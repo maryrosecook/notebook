@@ -10,4 +10,4 @@ execSyncShellWithOutput("chmod -R 755 content");
 pages.removeSpacesFromFilenames(pages.entryPaths());
 pages.generateIndexPages(pages.entryPaths());
 
-execSyncShellWithOutput("rsync -au content/ do:/var/www/notes.maryrosecook.com/");
+execSyncShellWithOutput("rsync -au content/ do:/var/www/notebook.maryrosecook.com/");
