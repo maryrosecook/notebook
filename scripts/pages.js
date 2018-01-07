@@ -12,7 +12,7 @@ function generateIndexPages(entryPaths) {
 };
 
 function indexPageHtmls(indexPages, entryPaths) {
-  return indexPageEntries(orderedEntriesHtml(entryPaths))
+  return indexPageEntries(orderedEntries(entryHtmls(entryPaths)))
     .map(html => indexPageHtml(indexPages, html));
 };
 
@@ -43,11 +43,14 @@ function indexPageHtml(indexPages, entriesHtml) {
     .join("\n\n");
 };
 
-function orderedEntriesHtml(entryPaths) {
+function entryHtmls(entryPaths) {
   return entryPaths
-    .map(path => fs.readFileSync(path, "utf8"))
-    .sort((html1, html2) => entryTime(html2) < entryTime(html1))
-    .reverse();
+    .map(path => fs.readFileSync(path, "utf8"));
+};
+
+function orderedEntries(htmls) {
+  return htmls
+    .sort((html1, html2) => entryTime(html2) - entryTime(html1))
 };
 
 function entryTime(html) {
